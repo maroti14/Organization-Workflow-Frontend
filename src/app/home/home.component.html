@@ -1,0 +1,54 @@
+
+
+<app-header></app-header>
+
+<div class="container-fluid">
+  <button routerLink="/addemp" class="btn btn-success">Add Employee</button>
+  <button (click)="onUpdate()" class="btn btn-warning">Update Employee</button>
+  <button (click)="onDelete()" class="btn btn-danger" >Delete Employee</button>
+</div>
+
+
+
+<br><br>
+
+
+<div class="container-fluid000">
+
+  <table class="table table-bordered ">
+    <thead>
+      <tr>
+        <th>Sr No</th>
+        <th>Action</th>
+        <th>Name </th>
+        <th>Status</th>
+        <th>department</th>
+        <th>created by</th>
+        <th>Created Date</th>
+        <th>Updated Date</th>
+        <th>Salary</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let  item of empData; index as i">
+        <td>{{i+1}}</td>
+        <td><input type="radio" (click)="onRadioClick(item.id)" name="record" ></td>
+        <td><a [routerLink]="['/detaile',item.id]">{{item.name}}</a></td>
+        <td> <h4><span [ngClass]="{
+            'badge':true,
+            'bg-success':item.status.toLowerCase()=='active',
+            'bg-warning':item.status.toLowerCase()=='inactive',
+            'bg-danger':item.status.toLowerCase()=='supended',
+          }" > {{item.status}}</span></h4> </td>
+        <td>{{item.deparment}}</td>
+        <td>{{item.createdBy}}</td>
+        <td>{{item.createdDate | date}}</td>
+        <td>{{item.updatedDate |date:'dd-MM-yyyy' }}</td>
+        <td>{{item.salary}}</td>
+        <td>{{item.country.cname}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
